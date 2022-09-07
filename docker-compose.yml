@@ -28,6 +28,7 @@ services:
       MYSQL_USERNAME: root
       MYSQL_PASSWORD: password
       MYSQL_HOST: mysql
+      EDITOR: code
     depends_on:
       - mysql
     networks:
