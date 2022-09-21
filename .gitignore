@@ -199,7 +199,6 @@ fabric.properties
 
 /storage/*
 
-# erd file
 erd.pdf
 erdonly.pdf
 
