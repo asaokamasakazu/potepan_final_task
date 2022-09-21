@@ -21,9 +21,5 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response.body).to include product.display_price.to_s
       expect(response.body).to include product.description
     end
-
-    it "コントローラー作成の@productとテスト作成のproductが一致していること" do
-      expect(assigns(:product)).to eq product
-    end
   end
 end
