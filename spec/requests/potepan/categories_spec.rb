@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Potepan::Categories", type: :request do
   describe "GET /show" do
-    let(:taxon) { create(:taxon) }
+    let(:taxonomy) { create(:taxonomy) }
+    let(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
-    let(:taxonomy) { create(:taxonomy) }
 
     before do
       product.images << image
