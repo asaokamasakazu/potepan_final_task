@@ -6,6 +6,10 @@ RSpec.describe "Potepan::Categories", type: :system do
     let(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
+    # 1行で書くと100文字を超えてrubocopにひっかかるためdoを使用しています
+    let!(:other_taxon) do
+      create(:taxon, name: "other_taxon", taxonomy: taxonomy, parent: taxonomy.root)
+    end
 
     before do
       product.images << image
@@ -32,8 +36,8 @@ RSpec.describe "Potepan::Categories", type: :system do
     end
 
     it "商品カテゴリーメニューからカテゴリー一覧に遷移すること" do
-      click_link taxon.name
-      expect(page).to have_current_path potepan_category_path(taxon.id)
+      click_link other_taxon.name
+      expect(page).to have_current_path potepan_category_path(other_taxon.id)
     end
   end
 end
