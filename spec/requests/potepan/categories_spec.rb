@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe "Potepan::Categories", type: :request do
   describe "GET /show" do
     let(:taxonomy) { create(:taxonomy) }
-    let(:taxon) { create(:taxon, name: "Tops", taxonomy: taxonomy, parent: taxonomy.root) }
+    let(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
     let(:other_taxon) { create(:taxon, name: "Pants", taxonomy: taxonomy, parent: taxonomy.root) }
-    let(:product1) { create(:product, name: "Rails Shirts", taxons: [taxon]) }
-    let(:product2) { create(:product, name: "Solidus Coat", taxons: [taxon]) }
-    let(:other_product) { create(:product, name: "Rails Denim", taxons: [other_taxon]) }
+    let(:product1) { create(:product, taxons: [taxon]) }
+    let(:product2) { create(:product, taxons: [taxon]) }
+    let(:other_product) { create(:product, taxons: [other_taxon]) }
     let(:image1) { create(:image) }
     let(:image2) { create(:image) }
     let(:other_image) { create(:image) }
