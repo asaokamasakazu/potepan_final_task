@@ -30,6 +30,36 @@ RSpec.describe "Potepan::Categories", type: :system do
       end
     end
 
+    it "現在のカテゴリー名が表示されていること" do
+      within ".page-title" do
+        expect(page).to have_content taxon.name
+      end
+    end
+
+    it "サイドバーに全てのカテゴリーが表示されていること" do
+      within ".side-nav" do
+        expect(page).to have_content taxonomy.name
+        expect(page).to have_content taxon.name
+        expect(page).to have_content other_taxon.name
+      end
+    end
+
+    it "サイドバーの各カテゴリーに商品数が表示されていること" do
+      within ".side-nav" do
+        expect(page).to have_content taxon.products.count
+        expect(page).to have_content other_taxon.products.count
+      end
+    end
+
+    it "商品情報が全て表示されていること" do
+      expect(page).to have_content product.name
+      expect(page).to have_content product.display_price.to_s
+    end
+
+    it "サイドバーの個数と表示している商品の個数が一致していること" do
+      expect(page.all('.productBox').count).to eq taxon.products.count
+    end
+
     it "商品をクリックすると商品詳細ページに遷移すること" do
       click_link product.name
       expect(page).to have_current_path potepan_product_path(product.id)
