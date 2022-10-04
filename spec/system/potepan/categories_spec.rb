@@ -6,7 +6,6 @@ RSpec.describe "Potepan::Categories", type: :system do
     let(:taxon) { create(:taxon, taxonomy: taxonomy, parent: taxonomy.root) }
     let(:product) { create(:product, taxons: [taxon]) }
     let(:image) { create(:image) }
-    # 1行で書くと100文字を超えてrubocopにひっかかるためdoを使用しています
     let!(:other_taxon) do
       create(:taxon, name: "other_taxon", taxonomy: taxonomy, parent: taxonomy.root)
     end
