@@ -44,8 +44,10 @@ RSpec.describe "Potepan::Categories", type: :system do
     end
 
     it "サイドバーの各カテゴリーに商品数が表示されていること" do
-      within ".side-nav" do
+      within "#taxon-#{taxon.id}" do
         expect(page).to have_content taxon.products.count
+      end
+      within "#taxon-#{other_taxon.id}" do
         expect(page).to have_content other_taxon.products.count
       end
     end
