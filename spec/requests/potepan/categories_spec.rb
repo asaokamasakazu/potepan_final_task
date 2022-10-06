@@ -19,8 +19,9 @@ RSpec.describe "Potepan::Categories", type: :request do
       get potepan_category_path(taxon.id)
     end
 
-    it "200レスポンスを返すこと" do
-      expect(response).to have_http_status(:success)
+    it "正常なレスポンスを返すこと" do
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
 
     it "taxonに紐づくproductだけ表示されていること" do
