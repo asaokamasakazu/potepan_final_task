@@ -21,20 +21,20 @@ RSpec.describe "Potepan::Categories", type: :request do
       expect(response).to have_http_status "200"
     end
 
-    it "taxonに紐づくproductだけを返すこと" do
+    it "taxonに紐づくproductだけを取得できていること" do
       expect(response.body).to include product.name
       expect(response.body).not_to include other_product.name
     end
 
-    it "商品価格を返すこと" do
+    it "商品価格を取得できていること" do
       expect(response.body).to include product.display_price.to_s
     end
 
-    it "商品カテゴリーとしてtaxonomy.nameを返すこと" do
+    it "商品カテゴリーとしてtaxonomy.nameを取得できていること" do
       expect(response.body).to include taxonomy.name
     end
 
-    it "商品カテゴリーとしてtaxon.nameとother_taxon.nameを返すこと" do
+    it "商品カテゴリーとしてtaxon.nameとother_taxon.nameを取得できていること" do
       expect(response.body).to include taxon.name
       expect(response.body).to include other_taxon.name
     end

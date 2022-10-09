@@ -10,10 +10,11 @@ RSpec.describe "Potepan::Products", type: :request do
     end
 
     it "200レスポンスを返すこと" do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
 
-    it "商品が表示されていること" do
+    it "商品情報を取得できていること" do
       expect(response.body).to include product.name
       expect(response.body).to include product.display_price.to_s
       expect(response.body).to include product.description
