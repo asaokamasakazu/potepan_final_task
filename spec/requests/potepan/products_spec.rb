@@ -19,8 +19,7 @@ RSpec.describe "Potepan::Products", type: :request do
     end
 
     it "正常なレスポンスを返すこと" do
-      expect(response).to be_successful
-      expect(response).to have_http_status "200"
+      expect(response).to have_http_status(:success)
     end
 
     it "商品情報を取得できていること" do
