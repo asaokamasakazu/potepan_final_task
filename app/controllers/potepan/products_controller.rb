@@ -3,6 +3,9 @@ class Potepan::ProductsController < ApplicationController
 
   def show
     @product = Spree::Product.find(params[:id])
-    @related_products = @product.related_products.limit(MAX_RELATED_PRODUCTS_COUNT)
+    @related_products = @product.
+      related_products.
+      includes(master: [:images, :default_price]).
+      limit(MAX_RELATED_PRODUCTS_COUNT)
   end
 end
