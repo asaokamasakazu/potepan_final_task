@@ -26,6 +26,14 @@ RSpec.describe "Potepan::Products", type: :system do
       expect(page).to have_current_path potepan_category_path(taxon.id)
     end
 
+    it "商品情報が表示されていること" do
+      within ".media-body" do
+        expect(page).to have_content product.name
+        expect(page).to have_content product.display_price.to_s
+        expect(page).to have_content product.description
+      end
+    end
+
     it "関連商品が4つのみ表示されていること" do
       within ".productsContent" do
         related_products.first(4).all? do |related_product|
