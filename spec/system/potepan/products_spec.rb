@@ -34,12 +34,17 @@ RSpec.describe "Potepan::Products", type: :system do
       end
     end
 
-    it "関連商品が4つのみ表示されていること" do
+    it "4つ目までの関連商品が全て表示されていること" do
       within ".productsContent" do
         related_products.first(4).all? do |related_product|
           expect(page).to have_content related_product.name
           expect(page).to have_content related_product.display_price.to_s
         end
+      end
+    end
+
+    it "5つ目の関連商品が表示されていないこと" do
+      within ".productsContent" do
         expect(page).not_to have_content related_products.last.name
         expect(page).not_to have_content related_products.last.display_price.to_s
       end
