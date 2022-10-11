@@ -28,11 +28,14 @@ RSpec.describe "Potepan::Products", type: :request do
       expect(response.body).to include product.description
     end
 
-    it "関連商品を4つのみ取得していること" do
+    it "4つ目までの関連商品を全て取得できていること" do
       related_products.first(4).all? do |related_product|
         expect(response.body).to include related_product.name
         expect(response.body).to include related_product.display_price.to_s
       end
+    end
+
+    it "5つ目の関連商品を取得していないこと" do
       expect(response.body).not_to include related_products.last.name
       expect(response.body).not_to include related_products.last.display_price.to_s
     end
